@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 const cors = require("cors");
 const userRouter = require("./routes/userRouter.js");
 
@@ -17,11 +18,11 @@ app.use(cors());
 
 app.use("/api/user", userRouter);
 
-app.use(express.static(path.join(__dirname, "/client1/dist")));
+app.use(express.static(path.join(__dirname, "/client/dist")));
 
 // All other GET requests not handled before will return our React app
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client1/dist", "index.html"));
+  res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
 });
 
 // async function testConnection() {
